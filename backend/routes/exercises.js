@@ -44,7 +44,7 @@ router.route("/update/:id").post((req, res) => {
       exercise.username = req.body.username;
       exercise.description = req.body.description;
       exercise.duration = Number(req.body.duration);
-      exercise.date = Date.parse(req.body.username);
+      exercise.date = Date.parse(req.body.date);
 
       exercise
         .save()
