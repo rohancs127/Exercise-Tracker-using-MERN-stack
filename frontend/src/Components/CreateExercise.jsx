@@ -19,6 +19,8 @@ function CreateExercise() {
     });
   };
 
+  const exercise = user;
+
   return <div>CreateExercise</div>;
 }
 
