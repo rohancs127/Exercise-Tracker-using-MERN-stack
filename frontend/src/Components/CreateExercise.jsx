@@ -10,7 +10,7 @@ function CreateExercise() {
     users: [],
   });
 
-  const onChangeusername = (e, date) => {
+  const onChangeUsername = (e, date) => {
     setUser({
       username: e.target.value,
       description: e.target.value,
@@ -20,6 +20,9 @@ function CreateExercise() {
   };
 
   const exercise = user;
+  console.log(exercise);
+
+  window.location = "/";
 
   return <div>CreateExercise</div>;
 }
