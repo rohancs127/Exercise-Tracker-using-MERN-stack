@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/es/react-datepicker.css";
 
 function CreateExercise() {
   const [user, setUser] = useState({
@@ -76,7 +78,7 @@ function CreateExercise() {
         <div className="form-group">
           <label>Date: </label>
           <div>
-            {/* <DatePicker selected={user.date} onChange={onChangeDate} /> */}
+            <DatePicker selected={user.date} onChange={onChangeDate} />
           </div>
         </div>
 
