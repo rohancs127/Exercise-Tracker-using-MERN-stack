@@ -1,7 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/es/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 function CreateExercise() {
   const [user, setUser] = useState({
@@ -11,6 +11,8 @@ function CreateExercise() {
     date: new Date(),
     users: [],
   });
+
+  const userInputRef = useRef(null);
 
   const onChangeUsername = (e, date) => {
     setUser({
@@ -38,10 +40,10 @@ function CreateExercise() {
     <div>
       <h3>Create New Exercise Log</h3>
       <form onSubmit={onSubmit}>
-        <div className="form-group">
+      <div className="form-group">
           <label>Username: </label>
           <select
-            ref="userInput"
+            ref={userInputRef} // Use ref here
             required
             className="form-control"
             value={user.username}
