@@ -23,7 +23,14 @@ function CreateExercise() {
     });
   };
 
-  const onSubmit = () => {};
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const exercise = user;
+    console.log(exercise);
+
+    window.location = "/";
+  };
 
   const onChangeDescription = () => {};
 
@@ -31,16 +38,13 @@ function CreateExercise() {
 
   const onChangeDate = () => {};
 
-  const exercise = user;
-  console.log(exercise);
-
   // window.location = "/";
 
   return (
     <div>
       <h3>Create New Exercise Log</h3>
       <form onSubmit={onSubmit}>
-      <div className="form-group">
+        <div className="form-group">
           <label>Username: </label>
           <select
             ref={userInputRef} // Use ref here
