@@ -32,11 +32,23 @@ function CreateExercise() {
     window.location = "/";
   };
 
-  const onChangeDescription = () => {};
+  const onChangeDescription = (e) => {
+    setUser({
+      description: e.target.value,
+    });
+  };
 
-  const onChangeDuration = () => {};
+  const onChangeDuration = (e) => {
+    setUser({
+      duration: e.target.value,
+    });
+  };
 
-  const onChangeDate = () => {};
+  const onChangeDate = () => {
+    setUser({
+      date: date,
+    });
+  };
 
   // window.location = "/";
 
@@ -54,6 +66,7 @@ function CreateExercise() {
             onChange={onChangeUsername}
           >
             {user.users.map(function (user1) {
+              console.log(user);
               return (
                 <option key={user1} value={user1}>
                   {user1}
