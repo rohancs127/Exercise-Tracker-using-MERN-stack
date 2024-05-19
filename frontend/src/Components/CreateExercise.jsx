@@ -21,6 +21,22 @@ function CreateExercise() {
     });
   };
 
+  const componentDidMount = () => {
+    axios
+      .get("http://localhost:5000/users/")
+      .then((response) => {
+        if (response.data.length > 0) {
+          setUser({
+            users: response.data.map((user) => user.username),
+            username: response.data[0].username,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
