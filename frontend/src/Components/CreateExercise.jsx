@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
@@ -21,9 +21,8 @@ function CreateExercise() {
     });
   };
 
-  const componentDidMount = () => {
-    axios
-      .get("http://localhost:5000/users/")
+  useEffect (()=>{
+    axios.get("http://localhost:5000/users/")
       .then((response) => {
         if (response.data.length > 0) {
           setUser({
@@ -34,8 +33,8 @@ function CreateExercise() {
       })
       .catch((error) => {
         console.log(error);
-      });
-  };
+      })
+  }, user);
 
   const onSubmit = (e) => {
     e.preventDefault();
