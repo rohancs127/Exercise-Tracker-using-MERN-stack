@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
@@ -15,31 +14,60 @@ function CreateExercise() {
 
   const userInputRef = useRef(null);
 
-  const onChangeUsername = (e, date) => {
-    setUser({
+  const onChangeUsername = (e) => {
+    setUser((prevState) => ({
+      ...prevState,
       username: e.target.value,
-    });
+    }));
   };
 
-  useEffect (()=>{
+  const onChangeDescription = (e) => {
+    setUser((prevState) => ({
+      ...prevState,
+      description: e.target.value,
+    }));
+  };
+
+  const onChangeDuration = (e) => {
+    setUser((prevState) => ({
+      ...prevState,
+      duration: e.target.value,
+    }));
+  };
+
+  const onChangeDate = (date) => {
+    setUser((prevState) => ({
+      ...prevState,
+      date: date,
+    }));
+  };
+
+  useEffect(() => {
     axios.get("http://localhost:5000/users/")
       .then((response) => {
         if (response.data.length > 0) {
-          setUser({
+          setUser((prevState) => ({
+            ...prevState,
             users: response.data.map((user) => user.username),
             username: response.data[0].username,
-          });
+          }));
         }
       })
       .catch((error) => {
         console.log(error);
-      })
-  }, user);
+      });
+  }, []);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const exercise = user;
+    const exercise = {
+      username: user.username,
+      description: user.description,
+      duration: user.duration,
+      date: user.date,
+    };
+
     console.log(exercise);
 
     axios
@@ -49,26 +77,6 @@ function CreateExercise() {
     window.location = "/";
   };
 
-  const onChangeDescription = (e) => {
-    setUser({
-      description: e.target.value,
-    });
-  };
-
-  const onChangeDuration = (e) => {
-    setUser({
-      duration: e.target.value,
-    });
-  };
-
-  const onChangeDate = () => {
-    setUser({
-      date: date,
-    });
-  };
-
-  // window.location = "/";
-
   return (
     <div>
       <h3>Create New Exercise Log</h3>
@@ -76,14 +84,13 @@ function CreateExercise() {
         <div className="form-group">
           <label>Username: </label>
           <select
-            ref={userInputRef} // Use ref here
+            ref={userInputRef}
             required
             className="form-control"
             value={user.username}
             onChange={onChangeUsername}
           >
             {user.users.map(function (user1) {
-              console.log(user);
               return (
                 <option key={user1} value={user1}>
                   {user1}
