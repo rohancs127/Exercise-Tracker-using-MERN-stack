@@ -1,12 +1,12 @@
 import React from "react";
 
-function ExerciseComponent() {
+function ExerciseComponent({name, description, duration, date}) {
   return (
     <div>
-      <div>User: Name</div>
-      <div>Exercise: Desc</div>
-      <div>Duration: 00</div>
-      <div>Date: dd/mm/yyyy</div>
+      <div>User: {name}</div>
+      <div>Exercise: {description}</div>
+      <div>Duration: {String(duration)}</div>
+      <div>Date: {Date(date)}</div>
     </div>
   );
 }
