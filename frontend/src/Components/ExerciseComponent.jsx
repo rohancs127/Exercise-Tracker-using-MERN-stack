@@ -1,14 +1,23 @@
 import React from "react";
 
-function ExerciseComponent({name, description, duration, date}) {
+function ExerciseComponent({ name, description, duration, date }) {
   return (
-    <div>
-      <div>User: {name}</div>
-      <div>Exercise: {description}</div>
-      <div>Duration: {String(duration)}</div>
-      <div>Date: {Date(date)}</div>
+    <div className="card mb-3">
+      <div className="card-body">
+        <h5 className="card-title">User: {name}</h5>
+        <p className="card-text">
+          <strong>Exercise:</strong> {description}
+        </p>
+        <p className="card-text">
+          <strong>Duration:</strong> {duration} minutes
+        </p>
+        <p className="card-text">
+          <small className="text-muted">Date: {new Date(date).toLocaleDateString()}</small>
+        </p>
+      </div>
     </div>
   );
 }
 
 export default ExerciseComponent;
+
