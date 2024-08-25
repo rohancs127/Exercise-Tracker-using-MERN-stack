@@ -29,7 +29,7 @@ function CreateUser() {
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card">
-            <div className="card-header bg-info text-white">
+            <div className="card-header bg-dark text-white">
               <h3 className="card-title mb-0">Create New User</h3>
             </div>
             <div className="card-body">
