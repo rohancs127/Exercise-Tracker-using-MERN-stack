@@ -6,12 +6,14 @@ import ExerciseComponent from "./ExerciseComponent";
 
 function ExercisesList() {
   const [exerciseList, setExerciseList] = useState([]);
+  const [exercisesPresent, setExercisesPresent] = useState(false)
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/exercises")
       .then((response) => {
         setExerciseList(response.data);
+        setExercisesPresent(true);
       })
       .catch((error) => {
         console.log(error);
@@ -21,9 +23,11 @@ function ExercisesList() {
   return (
     <div>
       {
-        exerciseList.map((exercise)=>(
+       exercisesPresent ?  
+       exerciseList.map((exercise)=>(
           <ExerciseComponent name={exercise.username} description={exercise.description} duration={exercise.duration} date={exercise.date} />
-        ))
+        )) : 
+        <div>No Exercises currently listed..</div>
       }
     </div>
   );
