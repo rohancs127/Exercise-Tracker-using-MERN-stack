@@ -21,16 +21,26 @@ function ExercisesList() {
   }, []);
 
   return (
-    <div>
-      {
-       exercisesPresent ?  
-       exerciseList.map((exercise)=>(
-          <ExerciseComponent name={exercise.username} description={exercise.description} duration={exercise.duration} date={exercise.date} />
-        )) : 
+    <div className="container mt-4">
+      {exercisesPresent ? (
+        <div className="row">
+          {exerciseList.map((exercise) => (
+            <div className="col-md-6 mb-4" key={exercise._id}>
+              <ExerciseComponent
+                name={exercise.username}
+                description={exercise.description}
+                duration={exercise.duration}
+                date={exercise.date}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
         <div>No Exercises currently listed..</div>
-      }
+      )}
     </div>
   );
+  
 }
 
 export default ExercisesList;
